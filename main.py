@@ -13,7 +13,13 @@ LINE = (
 )
 
 
+MAX_CHARS = 200  # kit gate: 1-200 chars, single line, UTF-8, not only whitespace
+
+
 def main() -> None:
+    assert 1 <= len(LINE) <= MAX_CHARS and "\n" not in LINE and LINE.strip(), (
+        "entry line violates the kit gate"
+    )
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
